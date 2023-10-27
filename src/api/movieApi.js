@@ -20,16 +20,16 @@ export async function serviceSearchMovies(query, page = 1) {
 }
 
 export async function serviceMovieDetails(movieId) {
-  const response = await axios.get(`/movie/${movieId}`);
+  const response = await axios.get(`/movie/${movieId}?api_key=${API_KEY}`);
   return response.data;
 }
 
 export async function serviceMovieCredits(movieId) {
-  const response = await axios.get(`/movie/${movieId}/credits`);
+  const response = await axios.get(`/movie/${movieId}/credits?api_key=${API_KEY}`);
   return response.data;
 }
 
 export async function serviceMovieReviews(movieId) {
-  const response = await axios.get(`/movie/${movieId}/reviews`);
+  const response = await axios.get(`/movie/${movieId}/reviews?api_key=${API_KEY}`);
   return response.data;
 }
