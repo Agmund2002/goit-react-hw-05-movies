@@ -1,10 +1,10 @@
-import Home from "pages/Home";
-import Movies from "pages/Movies";
-import MovieDetails from "pages/MovieDetails";
-import NotFound from "pages/NotFound";
-import { NavLink, Route, Routes } from "react-router-dom";
-import { Cast } from "./Cast/Cast";
-import { Reviews } from "./Reviews/Reviews";
+import HomePage from 'pages/HomePage';
+import MoviesPage from 'pages/MoviesPage';
+import MovieDetailsPage from 'pages/MovieDetailsPage';
+import NotFoundPage from 'pages/NotFoundPage';
+import { NavLink, Route, Routes } from 'react-router-dom';
+import { Cast } from './Cast/Cast';
+import { Reviews } from './Reviews/Reviews';
 
 export const App = () => {
   return (
@@ -15,18 +15,16 @@ export const App = () => {
           <NavLink to="/movies">Movies</NavLink>
         </nav>
       </header>
-
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/movies/:movieId" element={<MovieDetails />}>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
+      
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/movies" element={<MoviesPage />} />
+        <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </div>
   );
 };

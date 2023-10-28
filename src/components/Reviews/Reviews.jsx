@@ -1,3 +1,34 @@
+import { serviceMovieReviews } from "api/movieApi";
+import { Review } from "components/Review/Review";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 export const Reviews = () => {
-  return <div></div>;
+  const [movieReviews, setMovieReviews] = useState([]);
+  const { movieId } = useParams();
+
+  useEffect(() => {
+    const movieReviewsRequest = async () => {
+      try {
+        const response = await serviceMovieReviews(movieId);
+        setMovieReviews(response.results);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    movieReviewsRequest();
+  }, [movieId]);
+  
+  return (
+    <section>
+      <h2>Reviews</h2>
+      <ul>
+        {movieReviews.map(item => (
+          <li key={item.id}>
+            <Review data={item} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
 };

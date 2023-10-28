@@ -2,7 +2,7 @@ import { serviceTrendingMovies } from 'api/movieApi';
 import { TrendingMoviesList } from 'components/TrendingMoviesList/TrendingMoviesList';
 import { useEffect, useState } from 'react';
 
-const Home = () => {
+const HomePage = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -19,11 +19,11 @@ const Home = () => {
   }, []);
 
   return (
-    <section>
+    <main>
       <h1>Trending today</h1>
       <TrendingMoviesList data={movies} />
-    </section>
+    </main>
   );
 };
 
-export default Home;
+export default HomePage;
