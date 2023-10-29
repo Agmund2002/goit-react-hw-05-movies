@@ -1,5 +1,14 @@
+import { MoviesList } from "components/MoviesList/MoviesList";
+import { SearchForm } from "components/SearchForm/SearchForm";
+
 const MoviesPage = () => {
-  return <div>m</div>;
+  return (
+    <main>
+      <h1>Movies</h1>
+      <SearchForm />
+      <MoviesList />
+    </main>
+  );
 };
 
 export default MoviesPage;
