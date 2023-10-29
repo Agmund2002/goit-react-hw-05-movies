@@ -5,11 +5,12 @@ export const Actor = ({
 }) => {
   return (
     <>
-      <img src={`${BASIC_IMG_URL}${profile_path}`} alt={name} />
+      {profile_path && (
+        <img src={`${BASIC_IMG_URL}${profile_path}`} alt={name} />
+      )}
       <ul>
         <li>Name: {name}</li>
         <li>Character: {character}</li>
-        <li>Popularity: {popularity}</li>
       </ul>
     </>
   );

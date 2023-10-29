@@ -17,6 +17,7 @@ export const MovieDetails = () => {
         setMovieDetails({
           ...response,
           release_date: releaseDate.getFullYear(),
+          vote_average: response.vote_average.toFixed(1),
           genres: genresName,
         });
       } catch (error) {
@@ -27,11 +28,18 @@ export const MovieDetails = () => {
     movieDetailsRequest();
   }, [movieId]);
 
-  const { poster_path, title, release_date, vote_average, overview, genres } = movieDetails;
+  const { poster_path, title, release_date, vote_average, overview, genres } =
+    movieDetails;
 
   return (
     <section>
-      <img src={`${BASIC_IMG_URL}${poster_path}`} alt={title} loading="lazy" />
+      {poster_path && (
+        <img
+          src={`${BASIC_IMG_URL}${poster_path}`}
+          alt={title}
+          loading="lazy"
+        />
+      )}
       <h2>
         {title} ({release_date})
       </h2>

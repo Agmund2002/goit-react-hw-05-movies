@@ -22,13 +22,17 @@ export const Reviews = () => {
   return (
     <section>
       <h2>Reviews</h2>
-      <ul>
-        {movieReviews.map(item => (
-          <li key={item.id}>
-            <Review data={item} />
-          </li>
-        ))}
-      </ul>
+      {movieReviews.length > 0 ? (
+        <ul>
+          {movieReviews.map(item => (
+            <li key={item.id}>
+              <Review data={item} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>We don't have any reviews for this movies</p>
+      )}
     </section>
   );
 };
