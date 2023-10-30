@@ -1,3 +1,5 @@
-export const ErrorMessage = () => {
-    return <p>Oops... Something went wrong. Please reload the page!</p>;
+import { ErrorMessageStyled } from "./ErrorMessage.styled";
+
+export const ErrorMessage = ({text}) => {
+    return <ErrorMessageStyled>{text}</ErrorMessageStyled>;
 }

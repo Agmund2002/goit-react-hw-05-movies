@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const theme = {
   colors: {
+    secondColor: '#999999',
     error: '#de2323',
     mainBorder: 'rgba(153,153,153,0.3)',
     active: '#19cf68',

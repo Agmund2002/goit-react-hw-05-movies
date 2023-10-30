@@ -73,4 +73,10 @@ export const Button = styled.button`
   justify-content: center;
 
   padding-right: 2px;
+  cursor: pointer;
+
+  &:active {
+    background-color: ${p => p.theme.colors.active};
+
+  }
 `;

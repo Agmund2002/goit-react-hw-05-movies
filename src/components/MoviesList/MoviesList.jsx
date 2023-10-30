@@ -6,12 +6,12 @@ import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
 import { Loading } from 'components/Loading/Loading';
 import { GridItem, GridList, Title } from './MoviesList.styled';
 import { Container } from 'components/Container/Container';
-import { Notify } from 'notiflix';
 
 export const MoviesList = () => {
   const [movies, setMovies] = useState([]);
-   const [error, setError] = useState(false);
-   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [notFound, setNotFound] = useState(false);
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
 
@@ -23,12 +23,13 @@ export const MoviesList = () => {
         }
 
         setMovies([]);
+        setNotFound(false);
         setError(false);
         setLoading(true);
         const response = await serviceSearchMovies(query);
 
         if (response.results.length === 0) {
-          return Notify.warning('Nothing was found for this query. Please, try again');
+          return setNotFound(true);
         }
 
         setMovies(response.results);
@@ -42,17 +43,22 @@ export const MoviesList = () => {
     searchMovies();
   }, [query]);
 
-   const isVisible = () => {
-     if (loading || error) {
-       return false;
-     }
-     return true;
-   };
+  const isVisible = () => {
+    if (loading || error || notFound) {
+      return false;
+    }
+    return true;
+  };
 
   return (
     <>
       {loading && <Loading />}
-      {error && <ErrorMessage />}
+      {error && (
+        <ErrorMessage text="Oops... Something went wrong. Please reload the page!" />
+      )}
+      {notFound && (
+        <ErrorMessage text="Nothing was found for this query. Please, try again" />
+      )}
       {isVisible() && (
         <section>
           <Container>

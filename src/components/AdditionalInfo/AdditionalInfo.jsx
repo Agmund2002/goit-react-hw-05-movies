@@ -1,23 +1,24 @@
 
 import { Container } from 'components/Container/Container';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { List, Section, StyledNavLink, Title } from './AdditionalInfo.styled';
 
 export const AdditionalInfo = () => {
   return (
     <>
-      <section>
+      <Section>
         <Container>
-          <h2>Additional information</h2>
-          <ul>
+          <Title>Additional information</Title>
+          <List>
             <li>
-              <Link to="cast">Cast</Link>
+              <StyledNavLink to="cast">Cast</StyledNavLink>
             </li>
             <li>
-              <Link to="reviews">Reviews</Link>
+              <StyledNavLink to="reviews">Reviews</StyledNavLink>
             </li>
-          </ul>
+          </List>
         </Container>
-      </section>
+      </Section>
       <Outlet />
     </>
   );
