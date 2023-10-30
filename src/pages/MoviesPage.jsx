@@ -1,13 +1,13 @@
-import { MoviesList } from "components/MoviesList/MoviesList";
-import { SearchForm } from "components/SearchForm/SearchForm";
+import { MainContainer } from 'components/MainContainer/MainContainer';
+import { MoviesList } from 'components/MoviesList/MoviesList';
+import { SearchForm } from 'components/SearchForm/SearchForm';
 
 const MoviesPage = () => {
   return (
-    <main>
-      <h1>Movies</h1>
+    <MainContainer title="Movies">
       <SearchForm />
       <MoviesList />
-    </main>
+    </MainContainer>
   );
 };
 

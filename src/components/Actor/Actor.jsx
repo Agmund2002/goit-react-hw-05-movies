@@ -1,7 +1,7 @@
 const BASIC_IMG_URL = 'https://image.tmdb.org/t/p/original';
 
 export const Actor = ({
-  data: { character, name, popularity, profile_path },
+  data: { character, name, profile_path },
 }) => {
   return (
     <>

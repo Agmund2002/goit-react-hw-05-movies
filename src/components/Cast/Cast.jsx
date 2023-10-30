@@ -1,35 +1,48 @@
 import { serviceMovieCredits } from 'api/movieApi';
 import { Actor } from 'components/Actor/Actor';
+import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
+import { Loading } from 'components/Loading/Loading';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 export const Cast = () => {
   const [movieCredits, setMovieCredits] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { movieId } = useParams();
 
   useEffect(() => {
     const movieCreditsRequest = async () => {
       try {
+        setLoading(true);
         const response = await serviceMovieCredits(movieId);
         setMovieCredits(response.cast);
-      } catch (error) {
-        console.log(error);
+      } catch (_) {
+        setError(true);
+      } finally {
+        setLoading(false);
       }
     };
-    
+
     movieCreditsRequest();
   }, [movieId]);
 
   return (
-    <section>
-      <h2>Cast</h2>
-      <ul>
-        {movieCredits.map(item => (
-          <li key={item.id}>
+    <>
+      {loading && <Loading />}
+      {error && <ErrorMessage />}
+      {!loading && (
+        <section>
+          <h2>Cast</h2>
+          <ul>
+            {movieCredits.map(item => (
+              <li key={item.id}>
                 <Actor data={item} />
-          </li>
-        ))}
-      </ul>
-    </section>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </>
   );
 };

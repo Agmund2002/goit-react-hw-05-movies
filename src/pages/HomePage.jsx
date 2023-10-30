@@ -1,11 +1,11 @@
+import { MainContainer } from 'components/MainContainer/MainContainer';
 import { TrendingMoviesList } from 'components/TrendingMoviesList/TrendingMoviesList';
 
 const HomePage = () => {
   return (
-    <main>
-      <h1>Home</h1>
+    <MainContainer title="Home">
       <TrendingMoviesList />
-    </main>
+    </MainContainer>
   );
 };
 
