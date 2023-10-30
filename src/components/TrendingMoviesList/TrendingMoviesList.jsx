@@ -3,6 +3,8 @@ import { serviceTrendingMovies } from 'api/movieApi';
 import { useEffect, useState } from 'react';
 import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
 import { Loading } from 'components/Loading/Loading';
+import { GridItem, ListGrid, Title } from './TrendingMoviesList.styled';
+import { Container } from 'components/Container/Container';
 
 export const TrendingMoviesList = () => {
   const [movies, setMovies] = useState([]);
@@ -24,21 +26,30 @@ export const TrendingMoviesList = () => {
 
     trendingMovies();
   }, []);
-  
+
+  const isVisible = () => {
+    if (loading || error) {
+      return false;
+    }
+    return true;
+  }
+
   return (
     <>
       {loading && <Loading />}
       {error && <ErrorMessage />}
-      {!loading && (
+      {isVisible() && (
         <section>
-          <h2>Trending today</h2>
-          <ul>
-            {movies.map(item => (
-              <li key={item.id}>
-                <MovieCard info={item} />
-              </li>
-            ))}
-          </ul>
+          <Container>
+            <Title>Trending today</Title>
+            <ListGrid>
+              {movies.map(item => (
+                <GridItem key={item.id}>
+                  <MovieCard info={item} />
+                </GridItem>
+              ))}
+            </ListGrid>
+          </Container>
         </section>
       )}
     </>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
 import { Loading } from 'components/Loading/Loading';
+import { Container } from "components/Container/Container";
 
 export const Reviews = () => {
   const [movieReviews, setMovieReviews] = useState([]);
@@ -25,25 +26,34 @@ export const Reviews = () => {
     };
     movieReviewsRequest();
   }, [movieId]);
+
+   const isVisible = () => {
+     if (loading || error) {
+       return false;
+     }
+     return true;
+   };
   
   return (
     <>
       {loading && <Loading />}
       {error && <ErrorMessage />}
-      {!loading && (
+      {isVisible() && (
         <section>
-          <h2>Reviews</h2>
-          {movieReviews.length > 0 ? (
-            <ul>
-              {movieReviews.map(item => (
-                <li key={item.id}>
-                  <Review data={item} />
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>We don't have any reviews for this movies</p>
-          )}
+          <Container>
+            <h2>Reviews</h2>
+            {movieReviews.length > 0 ? (
+              <ul>
+                {movieReviews.map(item => (
+                  <li key={item.id}>
+                    <Review data={item} />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>We don't have any reviews for this movies</p>
+            )}
+          </Container>
         </section>
       )}
     </>

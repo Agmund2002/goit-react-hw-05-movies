@@ -6,7 +6,11 @@ import { GlobalStyle } from 'components/GlobalStyle';
 import { BrowserRouter } from 'react-router-dom';
 
 const theme = {
-  colors: {},
+  colors: {
+    error: '#de2323',
+    mainBorder: 'rgba(153,153,153,0.3)',
+    active: '#19cf68',
+  },
   spacing: value => `${value * 4}px`,
   animation: '250ms cubic-bezier(0.4, 0, 0.2, 1);',
 };

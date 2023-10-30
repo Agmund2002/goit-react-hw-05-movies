@@ -3,8 +3,11 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
 import { Loading } from 'components/Loading/Loading';
+import { Container } from 'components/Container/Container';
 
 const BASIC_IMG_URL = 'https://image.tmdb.org/t/p/original';
+const PLACEHOLDER =
+  'https://designessentiamagazine.com/wp-content/themes/fox/images/placeholder.jpg';
 
 export const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({});
@@ -35,6 +38,13 @@ export const MovieDetails = () => {
     movieDetailsRequest();
   }, [movieId]);
 
+   const isVisible = () => {
+     if (loading || error) {
+       return false;
+     }
+     return true;
+   };
+
   const { poster_path, title, release_date, vote_average, overview, genres } =
     movieDetails;
 
@@ -42,21 +52,25 @@ export const MovieDetails = () => {
     <>
       {loading && <Loading />}
       {error && <ErrorMessage />}
-      {!loading && (
+      {isVisible() && (
         <section>
-          {poster_path && (
-            <img
-              src={`${BASIC_IMG_URL}${poster_path}`}
-              alt={title}
-              loading="lazy"
-            />
-          )}
-          <h2>
-            {title} ({release_date})
-          </h2>
-          <span>{vote_average}</span>
-          <p>{overview}</p>
-          <span>{genres}</span>
+          <Container>
+            {poster_path ? (
+              <img
+                src={`${BASIC_IMG_URL}${poster_path}`}
+                alt={title}
+                loading="lazy"
+              />
+            ) : (
+              <img src={PLACEHOLDER} alt="placeholder" loading="lazy" />
+            )}
+            <h2>
+              {title} ({release_date})
+            </h2>
+            <span>{vote_average}</span>
+            <p>{overview}</p>
+            <span>{genres}</span>
+          </Container>
         </section>
       )}
     </>

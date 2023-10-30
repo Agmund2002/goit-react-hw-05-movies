@@ -3,7 +3,8 @@ import 'modern-normalize';
 
 export const GlobalStyle = createGlobalStyle`
 body {
-  padding: ${p => p.theme.spacing(10)};
+  padding: ${p => p.theme.spacing(5)};
+  padding-top: ${p => p.theme.spacing(1)};
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

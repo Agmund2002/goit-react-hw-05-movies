@@ -1,3 +1,4 @@
+import { Container } from 'components/Container/Container';
 import { MainContainer } from 'components/MainContainer/MainContainer';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -22,12 +23,14 @@ const NotFoundPage = () => {
 
   return (
     <MainContainer title="Not found">
-      <p>
-        Sorry, something went wrong. Click the link to go to the home page or
-        wait 10 seconds
-      </p>
-      <span>{timer}</span>
-      <Link to="/">Go home page</Link>
+      <Container>
+        <p>
+          Sorry, something went wrong. Click the link to go to the home page or
+          wait 10 seconds
+        </p>
+        <span>{timer}</span>
+        <Link to="/">Go home page</Link>
+      </Container>
     </MainContainer>
   );
 };

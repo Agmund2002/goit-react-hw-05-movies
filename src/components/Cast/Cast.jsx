@@ -1,5 +1,6 @@
 import { serviceMovieCredits } from 'api/movieApi';
 import { Actor } from 'components/Actor/Actor';
+import { Container } from 'components/Container/Container';
 import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
 import { Loading } from 'components/Loading/Loading';
 import { useEffect, useState } from 'react';
@@ -27,20 +28,29 @@ export const Cast = () => {
     movieCreditsRequest();
   }, [movieId]);
 
+   const isVisible = () => {
+     if (loading || error) {
+       return false;
+     }
+     return true;
+   };
+
   return (
     <>
       {loading && <Loading />}
       {error && <ErrorMessage />}
-      {!loading && (
+      {isVisible() && (
         <section>
-          <h2>Cast</h2>
-          <ul>
-            {movieCredits.map(item => (
-              <li key={item.id}>
-                <Actor data={item} />
-              </li>
-            ))}
-          </ul>
+          <Container>
+            <h2>Cast</h2>
+            <ul>
+              {movieCredits.map(item => (
+                <li key={item.id}>
+                  <Actor data={item} />
+                </li>
+              ))}
+            </ul>
+          </Container>
         </section>
       )}
     </>
